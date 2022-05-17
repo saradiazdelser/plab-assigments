@@ -1,0 +1,48 @@
+Peter Piper’s first dotplot 
+
+ |a peck of pickled peppers peter piper picked
+-+--------------------------------------------
+p|                                            
+e|                           *                
+t|                            *               
+e|                             *              
+r|                              *             
+ |                                            
+p|                                *     *     
+i|                                 *          
+p|                                  *         
+e|                                   *        
+r|                                    *       
+ |                                            
+p|                                *     *     
+i|           *                           *    
+c|            *                           *   
+k|                                         *  
+e|                                          * 
+d|                                            
+ |                                            
+a|                                            
+ |                                            
+p|  *                                         
+e|   *                                        
+c|    *                                       
+k|     *                                      
+ |                                            
+o|       *                                    
+f|        *                                   
+ |                                            
+p|          *                                 
+i|           *                           *    
+c|            *                           *   
+k|             *                              
+l|              *                             
+e|               *                            
+d|                *                           
+ |                                            
+p|                  *                         
+e|                   *                        
+p|                    *                       
+p|                     *                      
+e|                      *                     
+r|                       *                    
+s|                                            
