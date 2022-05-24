@@ -100,6 +100,7 @@ def print_alignment(alignement:list,score_matrix:pd.DataFrame,n:int=80):
 			print("".join(X))
 			print("".join(score_symbol))
 			print("".join(Y))
+			print("\n")
 	else:
 		print("No alignment")
 

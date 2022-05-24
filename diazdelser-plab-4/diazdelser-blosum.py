@@ -59,10 +59,10 @@ def expected_prob(pab:dict) -> dict:
 	for pair in possible_pairs:
 		# eaa = pa * pa
 		if pair[0]==pair[1]:
-			prob = pab.get(pair[0],0)*pab.get(pair[0],0)
+			prob = pab.get(pair[0],1/400)*pab.get(pair[0],1/400)
 		# eab = pa * pb + pb * pa = 2 * pa * pb
 		else:
-			prob = 2*pab.get(pair[0],0)*pab.get(pair[1],0)
+			prob = 2*pab.get(pair[0],1/400)*pab.get(pair[1],1/400)
 		expected.update({pair: prob})
 	return expected
 
@@ -131,7 +131,7 @@ def score_table(score_matrix:np.ndarray,aa, file) -> pd.DataFrame:
 
 	with open(file, 'w') as f:
 		print(df.to_string(), file=f)
-		print(colored(f'Score matrix saved to "{file}"'), 'green')
+		print(colored(f'Score matrix saved to "{file}"', 'green'))
 
 	return df
 
