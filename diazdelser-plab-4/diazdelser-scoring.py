@@ -11,11 +11,17 @@ import click
 
 def fa(seq:str) -> dict:
 	"""Return frequency of all amino acids"""
-	return Counter(seq)
+	# Start count at 1
+	counter = Counter(seq)
+	add_1 = {key :1 for key in list(counter.keys()) }
+	return counter + Counter(add_1)
 
-def pair_freq(seq1,seq2):
+def pair_freq(seqA,seqB):
 	"""Add pair frequencies from two sequences into dictionary"""
 	all_pairs = []
+	# seq1 should be the smaller one
+	seq1 = min([seqA,seqB],key = len)
+	seq2 = max([seqA,seqB], key = len)
 	for i in range(len(seq1)):
 		# Append pair (ordered) to list:
 		key = sorted([seq1[i],seq2[i]])
@@ -29,25 +35,24 @@ def all_pair_freq(seq_list:list) -> dict:
 		all_pairs.extend(pair_freq(seq1,seq2))
 	return Counter(all_pairs)
 
-
 def rel_freq(freq:dict) -> dict:
 	"""Determine relative frequency for each aminoacid"""
 	return { key : (val/sum(freq.values())) for key, val in freq.items() }
 
-def expected_prob(freq:dict) -> dict:
+def expected_prob(p:dict) -> dict:
 	"""Determine the expected probability of each aminoacid"""
 	expected = {}
 	# Get all possible pairs
-	possible_pairs = ["".join(sorted([aa1,aa2])) for aa1,aa2 in combinations(freq.keys(),2) ]
+	possible_pairs = ["".join(sorted([aa1,aa2])) for aa1,aa2 in combinations(p.keys(),2) ]
 	# add pairs of the same aa
-	possible_pairs.extend([aa+aa for aa in freq.keys() ])
+	possible_pairs.extend([aa+aa for aa in p.keys() ])
 	for pair in possible_pairs:
 		# eaa = pa * pa
 		if pair[0]==pair[1]:
-			prob = freq.get(pair[0])**2
+			prob = p.get(pair[0],1)*p.get(pair[0],1)
 		# eab = pa * pb + pb * pa = 2 * pa * pb
 		else:
-			prob = 2*freq.get(pair[0])*freq.get(pair[1])
+			prob = 2*p.get(pair[0],1)*p.get(pair[1],1)
 		expected.update({pair: prob})
 	return expected
 
@@ -89,7 +94,7 @@ def calc_score(seqs:list) -> dict:
 	freq_rel = rel_freq(freq)
 	p_freq_rel = rel_freq(p_freq)
 
-	p_exp = expected_prob(freq)
+	p_exp = expected_prob(freq_rel)
 	p_score = pair_score(p_freq_rel, p_exp)
 
 	return p_score
