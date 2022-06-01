@@ -1,4 +1,4 @@
-from termcolor import colored
+import re
 
 
 def all_fasta_sequences(f) -> list:
@@ -6,10 +6,9 @@ def all_fasta_sequences(f) -> list:
 	# Read all lines
 	all_records = "".join(f.readlines()).split('>')
 	# Split into headers and sequences
-	fasta_list = [(record.split('\n', 1)[0], record.split('\n', 1)[1].replace('\n', '')) \
-				  for record in all_records if record != '']
+	fasta_list = [(record.split('\n', 1)[0], record.split('\n', 1)[1].replace('\n', ''))
+				for record in all_records if record != '']
 
-	print(colored(f'Found a total of {len(fasta_list)} sequences', 'green'))
 	return fasta_list
 
 
@@ -29,7 +28,8 @@ def single_fasta_sequence(f):
 				except StopIteration:
 					return
 				line = new_line
-			yield (header, seq.replace('\n', ''))
+			yield header, seq.replace('\n', '')
+
 
 def write_to_fasta(outfile, header: str, sequence: str):
 	"""Writes the given sequence and its header to the open output file in FASTA format"""
@@ -44,3 +44,15 @@ def complementary(seq: str) -> str:
 	switch = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
 	# Use reverse to output it in 5' -> 3'
 	return "".join(reversed([switch[nt] for nt in seq]))
+
+
+def get_sequence_positions(f) -> dict:
+	"""Get positions of ORF from open fasta file"""
+	results = {}
+	for gen in all_fasta_sequences(f):
+		header, seq = gen
+		m = re.search(r'(\d+)-(\d+)', header)
+		start = m.group(1)
+		end = m.group(2)
+		results.update({end: start})
+	return results

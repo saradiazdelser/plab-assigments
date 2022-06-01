@@ -1,10 +1,13 @@
-from termcolor import colored
-import click
-from diazdelser_fastatools import single_fasta_sequence, complementary, write_to_fasta, all_fasta_sequences
 import re
 
+import click
+from termcolor import colored
+
+from diazdelser_fastatools import complementary, \
+	write_to_fasta, all_fasta_sequences
+
 # ----------------------------
-# FUNTIONS
+# FUNCTIONS
 # ----------------------------
 
 def orf_finder(seq:str) -> (list, int):
