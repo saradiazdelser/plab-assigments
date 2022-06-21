@@ -17,4 +17,6 @@ Assignments for the course "Programming Lab I" from the LSI Master at Bonn Unive
 | 4  | &check;  | &check;   |       |   bad     |              |
 | 5  | &check;  | &check;   |       |           |              |
 | 6  | &check;  | &check;   |       |   bad     |              |
-| 7  | wip      |           |       | long time |              |
+| 7  | &check;  | &check;   |       |           |              |
+| 8  |  14/24   |           |       | Jul 5     |              |
+| 9  |          |           |       |           |              |
