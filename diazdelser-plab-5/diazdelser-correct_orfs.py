@@ -38,8 +38,8 @@ def correct_orfs(orf_fasta, genes_fasta, minimum):
 			'n_genes': len(gen_pos),
 			'n_orf_correct': len(match),
 			'ratio_orf_correct': len(match) / len(orf_pos),
-			'n_stop_correct': len(match_stop) - len(match),
-			'ratio_stop_correct': (len(match_stop) - len(match)) / len(orf_pos),
+			'n_stop_correct': len(match_stop),
+			'ratio_stop_correct': (len(match_stop)/ len(orf_pos)),
 			'n_incorrect': len(mismatch),
 			'ratio_mismatch_correct': len(mismatch) / len(orf_pos),
 			}

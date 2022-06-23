@@ -12,7 +12,7 @@ from diazdelser_fastatools import complementary, \
 
 def orf_finder(seq:str) -> (list, int):
 	# Start with ATG and end in TAA,TAG, or TGA.
-	orf = r'(?:\w\w\w)*?((?:ATG)(?:\w\w\w)+?T(?:AG|AA|GA))'
+	orf = r'^(?:\w\w\w)*?((?:ATG)(?:\w\w\w)+?T(?:AG|AA|GA))'
 	results = []
 	sequences = []
 	# Search every reading frame
